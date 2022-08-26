@@ -136,6 +136,7 @@ export default function cart() {
            let idTotal = document.getElementById('price');
            idTotal.innerHTML=``;
            idTotal.innerHTML=`$${total}`;
+           idTotal.setAttribute('data-price', total);
           }
       }
       function confirmar(){

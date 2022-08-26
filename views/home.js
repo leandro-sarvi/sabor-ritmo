@@ -9,6 +9,7 @@ import {
 import viewProduct from "./viewProduct.js";
 import cart from "./cart.js";
 import viewVacio from "./viewVacio.js";
+import { mail, tel, ig } from "../utils/variables.js";
 const firestore = getFirestore(firebaseApp);
 export default function home(email) {
   let root = document.getElementById('app');
@@ -20,7 +21,7 @@ export default function home(email) {
   window.addEventListener('DOMContentLoaded', cargarP(productos));
   return html`
   <nav class="navMenu">
-  <i class="fa-solid fa-bars-staggered menu"></i>
+  <i class="fa-solid fa-bars-staggered menu" @click=${viewFixedMenu}></i>
   
   <button @click=${renderCart} class="hidden" id="btnCarrito">
   <i class="fa-solid fa-basket-shopping"></i>
@@ -62,14 +63,26 @@ export default function home(email) {
 </div>
 <hr>
 <div class="d-flex align-items-center justify-content-evenly p-2">
-<a href="https://api.whatsapp.com/send/?phone=541167983128&text&type=phone_number&app_absent=0" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-<a href="https://www.instagram.com/saboryritmoglew/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+<a href="https://api.whatsapp.com/send/?phone=${tel}&text&type=phone_number&app_absent=0" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="${ig}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
 <a href='http://api.qrserver.com/v1/create-qr-code/?data=${window.location.origin}&margin=50&size=300x300&ecc=L' target='_blank'><i class="fa-solid fa-qrcode"></i></a>
 <a @click=${share}><i class="fa-solid fa-share-nodes"></i></a>
 </div>
  </div>
  <div class="accordion accordion-flush" id="accordionFlushExample">
 
+          </div>
+          <div class="viewMenu shadow-lg" id="vM">
+          <div class="container-menu">
+          <div class="menu-link">
+          <span @click=${viewFixedMenu}><i class="fa-solid fa-xmark"></i> cerrar</span>
+          <a href="https://api.whatsapp.com/send/?phone=${tel}&text&type=phone_number&app_absent=0" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="${ig}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+<a href='http://api.qrserver.com/v1/create-qr-code/?data=${window.location.origin}&margin=50&size=300x300&ecc=L' target='_blank'><i class="fa-solid fa-qrcode"></i></a>
+<a @click=${share}><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+          <a class="cg" href="https://unicodev.com.ar/" target="_blank">Unicodev</a>
+          </div>
           </div>
   `;
   /******************************* FUNCTIONs *********************/
@@ -124,8 +137,13 @@ export default function home(email) {
     }
 
   }
+  function viewFixedMenu(){
+    let viewFixedMenu = document.getElementById('vM');
+    console.log(viewFixedMenu)
+    viewFixedMenu.classList.toggle('left');
+  }
   async function cargarP(productos) {
-    const consulta = await getDoc(doc(firestore, `laboutique@laboutique.online`, "categorias"));
+    const consulta = await getDoc(doc(firestore, mail, "categorias"));
     if (consulta.exists()) {
       let categorias = consulta.data().categorias;
       categorias.map((e) => {

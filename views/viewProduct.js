@@ -3,12 +3,14 @@ import firebaseApp from "../utils/credenciales.js";
 import { getFirestore, doc, getDoc } from "../utils/firestore.js";
 const firestore = getFirestore(firebaseApp);
 import home from "../views/home.js"
+import { mail } from "../utils/variables.js";
 export default function viewProduct(id) {
   let root = document.getElementById('app');
   ss(id);
   async function ss(id) {
-    let consulta = await getDoc(doc(firestore, `laboutique@laboutique.online`, id));
+    let consulta = await getDoc(doc(firestore, `${mail}`, id));
     let p = consulta.data();
+    console.log(p)
     render(html`
          <div class="viewContent">
          <nav class="navAtras">
@@ -109,7 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
       price.setAttribute("data-price", (inputCant.value * precioTotal));
     }
     if (e.target.classList.contains('agregarProduc')) {
-      let consulta = await getDoc(doc(firestore, `laboutique@laboutique.online`, e.target.getAttribute('data-id')));
+      let consulta = await getDoc(doc(firestore, `${mail}`, e.target.getAttribute('data-id')));
       let p = consulta.data();
       let inputCant = document.getElementById('inputCant');
       let totalPro = document.getElementById('price');
@@ -173,5 +175,5 @@ function obtenerProductosLocalStorage() {
 }
 function renderHome() {
   const root = document.getElementById('app');
-  render(home("laboutique@laboutique.online"), root);
+  render(home(mail), root);
 }

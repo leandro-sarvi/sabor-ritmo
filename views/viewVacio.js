@@ -3,6 +3,7 @@ import firebaseApp from "../utils/credenciales.js";
 import { getFirestore, doc, getDoc } from "../utils/firestore.js";
 const firestore = getFirestore(firebaseApp);
 import home from "../views/home.js"
+import { mail } from "../utils/variables.js";
 export default function viewVacio() {
     return html`
    
@@ -24,5 +25,5 @@ export default function viewVacio() {
  function renderHome() {
    const root = document.getElementById('app');
    window.location.hash = "";
-   render(home("laboutique@laboutique.online"), root);
+   render(home(mail), root);
  }

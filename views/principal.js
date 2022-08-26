@@ -1,5 +1,6 @@
 import { html, render } from "../utils/lit.js";
 import home from "./home.js";
+import { mail } from "../utils/variables.js";
 export default function Principal() {
   return html`
    
@@ -18,5 +19,5 @@ export default function Principal() {
 function renderHome() {
   const root = document.getElementById('app');
   window.location.hash = "";
-  render(home("laboutique@laboutique.online"), root);
+  render(home(mail), root);
 }

@@ -27,7 +27,7 @@ export default function home(email) {
   <span class="cant" id="totalCant">${cantidad}</span>
   </button>
   </nav>
-  <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div id="carouselExampleControls" class="carousel  slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="/img/burritos.jfif" class="d-block w-100" alt="...">

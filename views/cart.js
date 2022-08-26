@@ -7,13 +7,11 @@ import viewVacio from "./viewVacio.js";
 import { mail, tel } from "../utils/variables.js";
 export default function cart() {
     let root = document.getElementById('app');
-    let productoLS = JSON.parse(localStorage.getItem("productos"));
+    let productoLS = JSON.parse(localStorage.getItem(mail));
     let total=0;
     productoLS.map(p =>{
      total = total + Number( p.total);
     });
-
-    console.log(productoLS)
     return html`
     <nav class="viewCart">
          <i class="fa-solid fa-angle-left" @click=${renderHome}></i>
@@ -56,7 +54,7 @@ export default function cart() {
             </div>
             <span class="cart-total">$${p.total}</price>
             </div>
-            <button id="${p.id}">x eliminar</button>
+            <button class="btn-pedido" id="${p.id}" data-id="${p.id}" @click=${vaciarProd}>x eliminar</button>
             </div>
             `
            })}
@@ -104,6 +102,42 @@ export default function cart() {
         localStorage.clear();
         render(viewVacio(),root);
       }
+      function vaciarProd(e){
+          let viewPedido = document.getElementById('viewPedido');
+          productoLS.forEach(function (LS, index) {
+            if (LS.id === e.target.getAttribute('data-id')) {
+              productoLS.splice(index, 1);
+            }
+          });
+          localStorage.setItem(mail, JSON.stringify(productoLS));
+          if(productoLS.length === 0){
+            render(viewVacio(),root);
+          }else{
+            render(html`
+          ${productoLS.map((p)=>{
+            return html`
+            <div class="cardPedido">
+            <div class="cartPedido">
+            <div>
+            <span>${p.cantidad}x </span>
+            <span>${p.title}</span>
+            </div>
+            <span class="cart-total">$${p.total}</price>
+            </div>
+            <button class="btn-pedido" id="${p.id}" data-id="${p.id}" @click=${vaciarProd}>x eliminar</button>
+            </div>
+            `
+           })}
+          `, viewPedido);
+          total=0;
+          productoLS.map(p =>{
+            total = total + Number( p.total);
+           });
+           let idTotal = document.getElementById('price');
+           idTotal.innerHTML=``;
+           idTotal.innerHTML=`$${total}`;
+          }
+      }
       function confirmar(){
         let v = productoLS.map((element) => {
           return `%0D%0A%E2%9C%85($${element.total}) ${element.cantidad}X ${element.title} NOTAS:${element.notas}%0A`;
@@ -113,10 +147,8 @@ export default function cart() {
         let metodo="";
         if (document.getElementById("radio1").checked) {
           metodo = document.getElementById("radio1").value;
-          console.log(metodo)
         } else {
           metodo = document.getElementById("radio2").value;
-          console.log(metodo)
         }
       
         if(nameClient.value==='' | direccion.value===''){

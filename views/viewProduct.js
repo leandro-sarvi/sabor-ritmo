@@ -10,7 +10,6 @@ export default function viewProduct(id) {
   async function ss(id) {
     let consulta = await getDoc(doc(firestore, `${mail}`, id));
     let p = consulta.data();
-    console.log(p)
     render(html`
          <div class="viewContent">
          <nav class="navAtras">
@@ -161,15 +160,15 @@ function guardarProductosLocalStorage(producto) {
   let productos;
   productos = obtenerProductosLocalStorage();
   productos.push(producto);
-  localStorage.setItem("productos", JSON.stringify(productos));
+  localStorage.setItem(mail, JSON.stringify(productos));
 }
 function obtenerProductosLocalStorage() {
   let productoLS;
   //Comprobamos LocalStorage
-  if (localStorage.getItem("productos") === null) {
+  if (localStorage.getItem(mail) === null) {
     productoLS = [];
   } else {
-    productoLS = JSON.parse(localStorage.getItem("productos"));
+    productoLS = JSON.parse(localStorage.getItem(mail));
   }
   return productoLS;
 }

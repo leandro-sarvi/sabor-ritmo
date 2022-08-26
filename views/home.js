@@ -109,10 +109,10 @@ export default function home(email) {
   function obtenerProductosLocalStorage() {
     let productoLS;
     //Comprobamos LocalStorage
-    if (localStorage.getItem("productos") === null) {
+    if (localStorage.getItem(mail) === null) {
       productoLS = [];
     } else {
-      productoLS = JSON.parse(localStorage.getItem("productos"));
+      productoLS = JSON.parse(localStorage.getItem(mail));
     }
     return productoLS;
   }
@@ -130,7 +130,8 @@ export default function home(email) {
     await navigator.share(shareData);
   }
   function renderCart() {
-    if (localStorage.getItem("productos") === null) {
+    let productoLS = JSON.parse(localStorage.getItem(mail));
+    if (productoLS.length === 0) {
       render(viewVacio(),root);
     } else {
       render(cart(), root);

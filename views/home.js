@@ -64,8 +64,8 @@ export default function home(email) {
 <div class="d-flex align-items-center justify-content-evenly p-2">
 <a href="https://api.whatsapp.com/send/?phone=541167983128&text&type=phone_number&app_absent=0" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 <a href="https://www.instagram.com/saboryritmoglew/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-<a @click=${share}><i class="fa-solid fa-share-nodes"></i></a>
 <a href='http://api.qrserver.com/v1/create-qr-code/?data=${window.location.origin}&margin=50&size=300x300&ecc=L' target='_blank'><i class="fa-solid fa-qrcode"></i></a>
+<a @click=${share}><i class="fa-solid fa-share-nodes"></i></a>
 </div>
  </div>
  <div class="accordion accordion-flush" id="accordionFlushExample">

@@ -21,6 +21,9 @@ body::-webkit-scrollbar-thumb {
 .hidden{
   display: none;
 }
+.fa-share-nodes{
+  color: var(--color-secundary);
+}
 .btn:hover{
   color: #fff;
 background-color: var(--color-principal);

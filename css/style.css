@@ -25,9 +25,6 @@ body::-webkit-scrollbar-thumb {
   left: 0!important;
   transition: left .5s ease-in-out;
 }
-.fa-share-nodes{
-  color: var(--color-secundary);
-}
 .btn:hover{
   color: #fff;
 background-color: var(--color-principal);
@@ -212,7 +209,7 @@ border-color: var(--color-principal);
   top: 0;
   z-index: 10;
   width: 100%;
-  color: var(--color-secundary);
+  color: var(--color-principal)!important;
   font-size: 1.6rem;
   display:  flex;
   align-items: center;

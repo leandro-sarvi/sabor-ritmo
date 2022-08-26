@@ -127,7 +127,7 @@ export default function cart() {
             showConfirmButton: false,
           });
         }else{
-          let url = `https://wa.me/5491167983125?text=http%3A%2F%2F${window.location.host}%2F%0D%0AHola+Sabor+%26+Ritmo%21%0D%0AQuiero+hacer+un+pedido%2C+este+es+el+detalle%3A${v.join("")}%0D%0A%0D%0AM%C3%A9todo+de+pago+%F0%9F%92%B5%3A%0D%0A%0D%0A%E2%98%91+${metodo}%0D%0A%0D%0ANombre+de+quien+lo+recibe+%F0%9F%98%81%3A+%0D%0A%0D%0A${nameClient.value}%0D%0A%0D%0ADirecci%C3%B3n%F0%9F%97%BA%3A%0D%0A%0D%0A${direccion.value}%0D%0A%0D%0ATotal%3A%0D%0A%0D%0A%24${total}`;
+          let url = `https://wa.me/5491167983128?text=http%3A%2F%2F${window.location.host}%2F%0D%0AHola+Sabor+%26+Ritmo%21%0D%0AQuiero+hacer+un+pedido%2C+este+es+el+detalle%3A${v.join("")}%0D%0A%0D%0AM%C3%A9todo+de+pago+%F0%9F%92%B5%3A%0D%0A%0D%0A%E2%98%91+${metodo}%0D%0A%0D%0ANombre+de+quien+lo+recibe+%F0%9F%98%81%3A+%0D%0A%0D%0A${nameClient.value}%0D%0A%0D%0ADirecci%C3%B3n%F0%9F%97%BA%3A%0D%0A%0D%0A${direccion.value}%0D%0A%0D%0ATotal%3A%0D%0A%0D%0A%24${total}`;
       window.open(url);
       vaciarStorage();
         }
